@@ -43,8 +43,10 @@ public function tools()
 
 If you use this, you need to publish the config for this package so you can tell this package it can get the languages from the database.
 Run `php artisan vendor:publish --provider="Digitalcloud\MultilingualNova\FieldServiceProvider" --tag=config`.
+Run `php artisan vendor:publish --provider="Spatie\Translatable\TranslatableServiceProvider" --tag=config`.
 Next change `source` to `database` in `config/multilingual.php`.
-Next change `database.model` to `Marshmallow\\MultiLanguage\\Models\\Language`.
+Next change `database.model` to `Marshmallow\\MultiLanguage\\Models\\Language` in `config/multilingual.php`.
+Next change `fallback_locale` to `nl` in `config/translatable.php`.
 
 ## Prepare your models
 First make sure you are able to create translations by updating your Nova resource.
@@ -69,6 +71,9 @@ class Page extends Model
     public $translatable = ['name', 'slug', 'layout'];
 }
 ```
+
+## Config
+In `config.pages` you should change `use_multi_languages` to `true`;
 
 ## Usage
 The route below will be implemented by default. You can use this route to change the current selected language.
