@@ -2,10 +2,11 @@
 
 namespace Marshmallow\MultiLanguage\Http\Middleware;
 
+use App;
+use Config;
 use Closure;
 use Session;
-use Config;
-use App;
+use Marshmallow\HelperFunctions\Facades\URL;
 
 class MultiLanguageMiddleware
 {
@@ -18,6 +19,13 @@ class MultiLanguageMiddleware
      */
     public function handle($request, Closure $next)
     {
+        /**
+         * Don't use this middleware for Nova routes
+         */
+        if (URL::isNova($request)) {
+            return $next($request);
+        }
+
         $locale = Session::get('locale', Config::get('app.locale'));
         App::setLocale($locale);
 
