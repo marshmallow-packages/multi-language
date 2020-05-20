@@ -20,7 +20,7 @@
     "require": {
         "php": "^7.4",
         "digitalcloud/multilingual-nova": "^2.0",
-        "marshmallow/laravel-helpers": "^1.0"
+        "marshmallow/helpers": "^1.0"
     },
     "autoload": {
         "psr-4": {
