@@ -8,14 +8,14 @@ use Marshmallow\MultiLanguage\Models\Language;
 
 trait TranslatableRoute
 {
-	public function localeRoute (Language $language = null)
+	public function localeRoute(Language $language = null)
 	{
 		return URL::buildFromArray(
 			$this->getRouteParts($language)
 		);
 	}
 
-	protected function getRouteParts (Language $language = null)
+	protected function getRouteParts(Language $language = null)
 	{
 		return array_filter([
 			$this->getLocaleString($language),
@@ -24,12 +24,12 @@ trait TranslatableRoute
 		]);
 	}
 
-	protected function getModelUrlField ()
+	protected function getModelUrlField()
 	{
 		return $this->getRouteKeyName();
 	}
 
-	protected function getModelUrl (Language $language = null)
+	protected function getModelUrl(Language $language = null)
 	{
 		$url_column = $this->getModelUrlField();
 		if ($language) {
@@ -39,12 +39,12 @@ trait TranslatableRoute
 		return $this->{$url_column};
 	}
 
-	protected function routePrefix ()
+	protected function routePrefix()
 	{
 		return '';
 	}
 
-	protected function getLocaleString (Language $language = null)
+	protected function getLocaleString(Language $language = null)
 	{
 		if ($language) {
 			return $language->code;

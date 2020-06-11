@@ -5,7 +5,6 @@ namespace Marshmallow\MultiLanguage\Console\Commands;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Artisan;
 use Marshmallow\HelperFunctions\Facades\Str;
 
 class MigrateTableCommand extends Command
@@ -72,13 +71,12 @@ class MigrateTableCommand extends Command
             $this->info(
                 "\n\n The database columns and the data have been updated. Your data is now translatable."
             );
-
         } catch (Exception $e) {
             $this->error($e->getMessage());
         }
     }
 
-    protected function migrateData ($records)
+    protected function migrateData($records)
     {
         $bar = $this->output->createProgressBar(count($records));
 
@@ -86,7 +84,6 @@ class MigrateTableCommand extends Command
 
         foreach ($records as $record) {
             foreach ($this->translateable_columns as $column) {
-
                 $value = $record->getAttributes()[$column];
                 if (Str::isJson($value)) {
                     $value = json_decode($value, true);
@@ -103,7 +100,7 @@ class MigrateTableCommand extends Command
         $bar->finish();
     }
 
-    protected function checkTableStructureIsValid ()
+    protected function checkTableStructureIsValid()
     {
         /**
          * Rules
@@ -121,7 +118,7 @@ class MigrateTableCommand extends Command
         }
     }
 
-    protected function updateTableStructure ()
+    protected function updateTableStructure()
     {
         $table = $this->resource_class->getTable();
         foreach ($this->translateable_columns as $column) {
@@ -132,7 +129,7 @@ class MigrateTableCommand extends Command
                 continue;
             }
             $database_column = $results[0];
-            
+
             if ($database_column->Type == 'json') {
                 continue;
             }

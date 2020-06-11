@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 
 class MultiLanguageController extends Controller
 {
-	public function show ()
+	public function show()
 	{
 		//
 	}
