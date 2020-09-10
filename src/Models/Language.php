@@ -10,4 +10,20 @@ class Language extends Model
 	{
 	    return 'code';
 	}
+
+    /**
+     * Build an array like ["nl" => "Nederlands"].
+     * This is used by the Menu builders througout our packages.
+     */
+    public static function getLanguageArray(): array
+    {
+        $languages = Language::get()->pluck('label', 'code')->toArray();
+        if (!$languages) {
+            return [
+                'nl' => 'Nederlands',
+            ];
+        }
+
+        return $languages;
+    }
 }
