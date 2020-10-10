@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Language extends Model
 {
-	public function getRouteKeyName()
-	{
-	    return 'code';
-	}
+    public function getRouteKeyName()
+    {
+        return 'code';
+    }
 
     /**
      * Build an array like ["nl" => "Nederlands"].
@@ -18,7 +18,7 @@ class Language extends Model
     public static function getLanguageArray(): array
     {
         $languages = Language::get()->pluck('label', 'code')->toArray();
-        if (!$languages) {
+        if (! $languages) {
             return [
                 'nl' => 'Nederlands',
             ];

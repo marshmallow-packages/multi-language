@@ -4,8 +4,8 @@ namespace Marshmallow\MultiLanguage\Nova;
 
 use App\Nova\Resource;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\Text;
 
 class Language extends Resource
 {
@@ -44,11 +44,11 @@ class Language extends Resource
     {
         return [
             Text::make('Code')->withMeta(['extraAttributes' => [
-			    'placeholder' => 'Eq: nl,en,de']
-			])->rules('required', 'min:2', 'max:2'),
+                'placeholder' => 'Eq: nl,en,de', ],
+            ])->rules('required', 'min:2', 'max:2'),
             Text::make('Label')->withMeta(['extraAttributes' => [
-			    'placeholder' => 'Eq: Nederlands,English,Deutsch']
-			])->rules('required'),
+                'placeholder' => 'Eq: Nederlands,English,Deutsch', ],
+            ])->rules('required'),
             Image::make('Flag'),
         ];
     }

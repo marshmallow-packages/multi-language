@@ -8,9 +8,10 @@ use Marshmallow\MultiLanguage\Models\Language;
 
 class MultiLanguageController extends Controller
 {
-	public function switchLanguage(Language $language)
-	{
-		Session::put('locale', $language->code);
+    public function switchLanguage(Language $language)
+    {
+        Session::put('locale', $language->code);
+
         return redirect()->back();
-	}
+    }
 }

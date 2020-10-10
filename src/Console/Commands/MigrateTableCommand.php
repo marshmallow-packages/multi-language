@@ -43,8 +43,9 @@ class MigrateTableCommand extends Command
         $resource_name = $this->argument('resource_name');
 
         $this->resource_class = new $resource_name;
+
         try {
-            if (!isset($this->resource_class->translatable) || empty($this->resource_class->translatable)) {
+            if (! isset($this->resource_class->translatable) || empty($this->resource_class->translatable)) {
                 throw new Exception('No translateable columns. We have nothing to migrate.', 1);
             }
 
@@ -58,7 +59,7 @@ class MigrateTableCommand extends Command
                 ' Please use carefully and back-up your data first.'. "\n"
             );
 
-            if (!$confirmed) {
+            if (! $confirmed) {
                 exit;
             }
 
@@ -114,6 +115,7 @@ class MigrateTableCommand extends Command
             if (empty($results)) {
                 continue;
             }
+
             throw new Exception("There is an index on the column `$column`. This cannot be migrated to type JSON which is required for the translations. Remove the index or don't translate this field.", 1);
         }
     }

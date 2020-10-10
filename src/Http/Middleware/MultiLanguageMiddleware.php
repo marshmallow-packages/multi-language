@@ -3,10 +3,10 @@
 namespace Marshmallow\MultiLanguage\Http\Middleware;
 
 use App;
-use Config;
 use Closure;
-use Session;
+use Config;
 use Marshmallow\HelperFunctions\Facades\URL;
+use Session;
 
 class MultiLanguageMiddleware
 {
